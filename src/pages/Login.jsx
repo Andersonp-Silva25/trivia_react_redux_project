@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import fetchApi from '../services';
 /* import logo from '../trivia.png'; */
 
 class Login extends React.Component {
-  state = {
-    email: '',
-    name: '',
-    btnDisabled: true,
-  };
+  constructor() {
+    super();
+    this.state = {
+      email: '',
+      name: '',
+      btnDisabled: true,
+    };
+  }
 
   validateLogin = () => {
     const { email, name } = this.state;
@@ -27,12 +31,10 @@ class Login extends React.Component {
     this.setState({ [name]: value }, () => this.habiliteBtn());
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const { dispatch, history } = this.props;
-    const { email } = this.state;
-    dispatch(saveEmailAction(email));
-    history.push('/');
+  loginEvent = async () => {
+    const { history } = this.props;
+    fetchApi();
+    history.push('/game');
   };
 
   render() {
@@ -49,7 +51,6 @@ class Login extends React.Component {
           <button type="button" data-testid="btn-settings">Settings</button>
         </Link>
         <form
-          onSubmit={ this.handleSubmit }
           id="form-login"
         >
           <label htmlFor="input-player-name">
@@ -76,6 +77,7 @@ class Login extends React.Component {
             data-testid="btn-play"
             type="submit"
             disabled={ btnDisabled }
+            onClick={ this.loginEvent }
           >
             Play
           </button>
@@ -87,7 +89,6 @@ class Login extends React.Component {
 
 Login.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
-  dispatch: PropTypes.func.isRequired,
 };
 
 /* export default connect()(Login) */
