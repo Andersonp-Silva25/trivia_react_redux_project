@@ -12,7 +12,8 @@ function player(state = INITIAL_STATE, action) {
   case SET_NAME:
     return {
       ...state,
-      name: action.payload,
+      name: action.payload.name,
+      gravatarEmail: action.payload.gravatarEmail,
     };
   default: return state;
   }
