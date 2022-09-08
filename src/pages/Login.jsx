@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import fetchApi from '../services';
 /* import logo from '../trivia.png'; */
 
 class Login extends React.Component {
@@ -31,12 +32,7 @@ class Login extends React.Component {
 
   loginEvent = async () => {
     const { history } = this.props;
-    //const response = await fetch('https://opentdb.com/api_token.php?command=request');
-    //const token = await response.json();
-    console.log(token.token);
-    console.log('teste');
-    //localStorage.setItem('token', JSON.stringify(token.token));
-    console.log(history);
+    fetchApi();
     history.push('/game');
   };
 
