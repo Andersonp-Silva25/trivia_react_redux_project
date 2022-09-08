@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { MD5 } from 'crypto-js';
 import fetchApi from '../services';
+import { setName } from '../redux/actions';
 /* import logo from '../trivia.png'; */
 
 class Login extends React.Component {
@@ -32,8 +35,11 @@ class Login extends React.Component {
   };
 
   loginEvent = async () => {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
+    const { email, name } = this.state;
+    const gravatarEmail = MD5(email).toString();
     fetchApi();
+    dispatch(setName({ gravatarEmail, name }));
     history.push('/game');
   };
 
@@ -89,8 +95,7 @@ class Login extends React.Component {
 
 Login.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-/* export default connect()(Login) */
-
-export default Login;
+export default connect()(Login);
