@@ -31,6 +31,5 @@ describe('Verifica o componente <Login />', () => {
     userEvent.type(inputname, 'joao');
     userEvent.type(inputEmail, 'teste@teste.com');
     expect(btnLogin).toBeEnabled();
-    
   });
 });
