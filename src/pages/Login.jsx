@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import fetchApi from '../services';
+import { Link } from 'react-router-dom';
 /* import logo from '../trivia.png'; */
 
 class Login extends React.Component {
@@ -46,6 +47,9 @@ class Login extends React.Component {
             <p>SUA VEZ</p>
           </header>
         </div> */}
+        <Link to="/Settings">
+          <button type="button" data-testid="btn-settings">Settings</button>
+        </Link>
         <form
           id="form-login"
         >
