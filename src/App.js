@@ -16,6 +16,7 @@ export default function App() {
       <Route exact path="/ranking" component={ Ranking } />
       {/* <Route exact path="/aaa" component={  } /> */}
       <Route exact path="/feedback" component={ Feedback } />
+      {/* <Route exact path="/aaa" component={  } /> */}
     </Switch>
   );
 }
