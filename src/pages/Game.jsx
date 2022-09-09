@@ -16,8 +16,6 @@ class Game extends React.Component {
     };
   }
 
-  //
-
   async componentDidMount() {
     const token = localStorage.getItem('token');
     const gameURL = `https://opentdb.com/api.php?amount=5&token=${token}`;
