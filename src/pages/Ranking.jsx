@@ -12,7 +12,7 @@ class Ranking extends React.Component {
     return (
       <div>
         <Header />
-        <h2>Ranking</h2>
+        <h2 data-testid="ranking-title">Ranking</h2>
         <button
           type="button"
           data-testid="btn-go-home"
