@@ -8,10 +8,11 @@ class ButtonNewGame extends React.Component {
   };
 
   render() {
+    const { nameButton } = this.props;
     return (
       <button
         type="button"
-        data-testid="btn-go-home"
+        data-testid={ nameButton }
         onClick={ this.newGame }
       >
         Jogar Novamente

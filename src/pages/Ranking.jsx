@@ -65,7 +65,7 @@ class Ranking extends React.Component {
         {isRanking ? ranking.map((player, index) => (
           <div key={ index }>
             <p data-testid={ `player-name-${index}` }>{player.name}</p>
-            <p data-testid={ `player-name-${index}` }>
+            <p data-testid={ `player-score-${index}` }>
               Acertos:
               {' '}
               {player.assertions}
@@ -76,7 +76,7 @@ class Ranking extends React.Component {
             </p>
           </div>
         )) : <p>Ranking vazio</p>}
-        <ButtonNewGame history={ history } />
+        <ButtonNewGame history={ history } nameButton="btn-go-home" />
       </div>
     );
   }
