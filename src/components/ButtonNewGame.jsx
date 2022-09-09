@@ -24,6 +24,7 @@ class ButtonNewGame extends React.Component {
 
 ButtonNewGame.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+  nameButton: PropTypes.string.isRequired,
 };
 
 export default ButtonNewGame;
