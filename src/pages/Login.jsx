@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { MD5 } from 'crypto-js';
-import fetchApi from '../services';
+import { fetchApi } from '../services';
 import { setName } from '../redux/actions';
 /* import logo from '../trivia.png'; */
 
@@ -14,6 +14,7 @@ class Login extends React.Component {
       email: '',
       name: '',
       btnDisabled: true,
+      loading: true,
     };
   }
 
@@ -35,16 +36,20 @@ class Login extends React.Component {
   };
 
   loginEvent = async () => {
-    const { history, dispatch } = this.props;
+    const { dispatch } = this.props;
     const { email, name } = this.state;
     const gravatarEmail = MD5(email).toString();
-    fetchApi();
+    this.setState({ loading: true }, async () => {
+      await fetchApi();
+      this.setState({ loading: false });
+    });
+
     dispatch(setName({ gravatarEmail, name }));
-    history.push('/game');
+    // history.push('/game');
   };
 
   render() {
-    const { btnDisabled } = this.state;
+    const { btnDisabled, loading } = this.state;
     return (
       <main>
         {/* <div className="App">
@@ -81,13 +86,14 @@ class Login extends React.Component {
           </label>
           <button
             data-testid="btn-play"
-            type="submit"
+            type="button"
             disabled={ btnDisabled }
             onClick={ this.loginEvent }
           >
             Play
           </button>
         </form>
+        {!loading && <Redirect to="/game" />}
       </main>
     );
   }

@@ -13,6 +13,7 @@ export default function App() {
       <Route exact path="/game" component={ Game } />
       <Route exact path="/Settings" component={ Settings } />
       <Route exact path="/feedback" component={ Feedback } />
+      {/* <Route exact path="/aaa" component={  } /> */}
     </Switch>
   );
 }

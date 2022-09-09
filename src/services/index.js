@@ -1,6 +1,6 @@
 const url = 'https://opentdb.com/api_token.php?command=request';
 
-const fetchApi = async () => {
+export const fetchApi = async () => {
   const response = await fetch(url);
   const data = await response.json();
   const { token } = data;
@@ -9,4 +9,8 @@ const fetchApi = async () => {
   return tokenApi;
 };
 
-export default fetchApi;
+export const fetchGameApi = async (gameUrl) => {
+  const response = await fetch(gameUrl);
+  const data = await response.json();
+  return data;
+};
