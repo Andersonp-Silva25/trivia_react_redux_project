@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import FeedbackHeader from '../components/FeedbackHeader';
 
 class Feedback extends Component {
   ranking = () => {
@@ -14,6 +15,7 @@ class Feedback extends Component {
     const { score } = this.props; // OBS Readme: No estado do redux as chaves score e assertions devem ser do tipo number
     return (
       <div>
+        <FeedbackHeader />
         <h2>Feedback</h2>
         <div>
           <p>Placar Final:</p>
