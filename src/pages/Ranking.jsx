@@ -1,26 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
+import ButtonNewGame from '../components/ButtonNewGame';
 
 class Ranking extends React.Component {
-  newGame = () => {
-    const { history } = this.props;
-    history.push('/');
-  };
-
   render() {
+    const { history } = this.props;
     return (
       <div>
         <Header />
         <h2 data-testid="ranking-title">Ranking</h2>
-        <button
-          type="button"
-          data-testid="btn-go-home"
-          onClick={ this.newGame }
-        >
-          Jogar Novamente
-
-        </button>
+        <ButtonNewGame history={ history } />
       </div>
     );
   }
