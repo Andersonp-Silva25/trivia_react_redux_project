@@ -8,10 +8,11 @@ class ButtonNewGame extends React.Component {
   };
 
   render() {
+    const { nameButton } = this.props;
     return (
       <button
         type="button"
-        data-testid="btn-go-home"
+        data-testid={ nameButton }
         onClick={ this.newGame }
       >
         Jogar Novamente
@@ -23,6 +24,7 @@ class ButtonNewGame extends React.Component {
 
 ButtonNewGame.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+  nameButton: PropTypes.string.isRequired,
 };
 
 export default ButtonNewGame;
