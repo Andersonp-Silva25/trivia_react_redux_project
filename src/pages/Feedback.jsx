@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import FeedbackHeader from '../components/FeedbackHeader';
 
 class Feedback extends Component {
-  ranking = () => {
-    const { history } = this.props;
-    history.push('/ranking');
-  };
+  // ranking = () => {
+  //   const { history } = this.props;
+  //   history.push('/ranking');
+  // };
 
   render() {
     // const TRES = 3;
