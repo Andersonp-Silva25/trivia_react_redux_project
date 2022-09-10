@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
+import { setScore } from '../redux/actions';
 import { fetchGameApi } from '../services';
 
 class Game extends React.Component {
@@ -15,6 +17,7 @@ class Game extends React.Component {
       position: Math.floor(Math.random() * positions),
       timer: 30,
       timeout: false,
+      score: 0,
     };
     this.handleAnswerClick = this.handleAnswerClick.bind(this);
     this.updateTimer = this.updateTimer.bind(this);
@@ -31,6 +34,7 @@ class Game extends React.Component {
     } else {
       this.setState({ data, loading: false });
     }
+    console.log(data);
     const interval = 1000;
     setInterval(this.updateTimer, interval);
   }
@@ -41,14 +45,36 @@ class Game extends React.Component {
     // console.log(currentQuestion);
   }
 
-  handleAnswerClick() {
+  handleAnswerClick(event) {
+    const { dispatch } = this.props;
+    const { timer, data, currentQuestion, score } = this.state;
+    const multiplier = 10;
+    const hard = 3;
+    console.log(data);
+    if (event.target.id === 'right-answer') {
+      console.log('resposta correta');
+      switch (data.results[currentQuestion].difficulty) {
+      case 'easy':
+        this.setState({ score: score + multiplier + (timer * 1) });
+        dispatch(setScore(score + multiplier + (timer * 1)));
+        break;
+      case 'medium':
+        this.setState({ score: score + multiplier + (timer * 2) });
+        dispatch(setScore(score + multiplier + (timer * 2)));
+        break;
+      case 'hard':
+        this.setState({ score: score + multiplier + (timer * hard) });
+        dispatch(setScore(score + multiplier + (timer * hard)));
+        break;
+      default: dispatch(setScore(score + multiplier + (timer)));
+      }
+    }
     document.querySelectorAll('#wrong-answer').forEach((elem) => {
       elem.classList.add('wrong-answer');
     });
     document.querySelectorAll('#right-answer').forEach((elem) => {
       elem.classList.add('right-answer');
     });
-    const { currentQuestion } = this.state;
     const nextQuestion = currentQuestion + 1;
     this.setState({ currentQuestion: nextQuestion });
   }
@@ -142,4 +168,4 @@ class Game extends React.Component {
   }
 }
 
-export default Game;
+export default connect()(Game);
