@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
@@ -18,9 +19,12 @@ class Game extends React.Component {
       timer: 30,
       timeout: false,
       score: 0,
+      displayNextButton: false,
+      redirectToFeedback: false,
     };
     this.handleAnswerClick = this.handleAnswerClick.bind(this);
     this.updateTimer = this.updateTimer.bind(this);
+    this.handleNextButtonClick = this.handleNextButtonClick.bind(this);
   }
 
   async componentDidMount() {
@@ -37,12 +41,6 @@ class Game extends React.Component {
     console.log(data);
     const interval = 1000;
     setInterval(this.updateTimer, interval);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { currentQuestion } = this.state;
-    // console.log(prevState);
-    // console.log(currentQuestion);
   }
 
   handleAnswerClick(event) {
@@ -75,8 +73,19 @@ class Game extends React.Component {
     document.querySelectorAll('#right-answer').forEach((elem) => {
       elem.classList.add('right-answer');
     });
-    const nextQuestion = currentQuestion + 1;
-    this.setState({ currentQuestion: nextQuestion });
+    this.setState({ displayNextButton: true });
+  }
+
+  handleNextButtonClick() {
+    const { currentQuestion } = this.state;
+    const maxQuestions = 4;
+    if (currentQuestion < maxQuestions) {
+      const nextQuestion = currentQuestion + 1;
+      this.setState({ currentQuestion: nextQuestion });
+    }
+    if (currentQuestion === maxQuestions) {
+      this.setState({ redirectToFeedback: true });
+    }
   }
 
   updateTimer() {
@@ -92,7 +101,7 @@ class Game extends React.Component {
 
   render() {
     const { data, currentQuestion, loading, redirect, position, timer,
-      timeout } = this.state;
+      timeout, displayNextButton, redirectToFeedback } = this.state;
     const answerPosition = 6;
     return (
       <div>
@@ -163,9 +172,27 @@ class Game extends React.Component {
               </div>
             )
         }
+        {
+          displayNextButton
+            ? (
+              <button
+                data-testid="btn-next"
+                type="button"
+                onClick={ this.handleNextButtonClick }
+              >
+                Next
+              </button>
+            )
+            : (<div />)
+        }
+        {redirectToFeedback && <Redirect to="./Feedback" />}
       </div>
     );
   }
 }
+
+Game.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
 
 export default connect()(Game);
