@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FeedbackHeader from '../components/FeedbackHeader';
+import ButtonNewGame from '../components/ButtonNewGame';
 
 class Feedback extends Component {
   ranking = () => {
@@ -10,9 +11,10 @@ class Feedback extends Component {
   };
 
   render() {
+    const { history } = this.props;
     const TRES = 3;
     const DEZ = 10;
-    const { score } = this.props; // OBS Readme: No estado do redux as chaves score e assertions devem ser do tipo number
+    const { score } = this.props; // OBS Readme: No estado do redux as chaves score e assertions devem ser do tipo number !
     return (
       <div>
         <FeedbackHeader />
@@ -37,6 +39,7 @@ class Feedback extends Component {
           Ver Ranking
 
         </button>
+        <ButtonNewGame history={ history } nameButton="btn-play-again" />
       </div>
     );
   }
