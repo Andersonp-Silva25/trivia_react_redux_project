@@ -11,26 +11,26 @@ class Feedback extends Component {
   };
 
   render() {
-    const { history } = this.props;
     const TRES = 3;
-    const DEZ = 10;
-    const { score } = this.props; // OBS Readme: No estado do redux as chaves score e assertions devem ser do tipo number !
+    const { score, assertions, history } = this.props;
+    // OBS Readme: No estado do redux as chaves score e assertions devem ser do tipo number !
+
     return (
       <div>
-        <FeedbackHeader />
         <h2>Feedback</h2>
+        <FeedbackHeader />
         <div>
           <p>Placar Final:</p>
-          <span data-testid="feedback-total-score">{ score * DEZ }</span>
+          <span data-testid="feedback-total-score">{ score }</span>
           {/* score pode ser o Nº de acertos x 10 por exemplo */}
         </div>
         <div>
           <p>Numero de acertos:</p>
-          <p data-testid="feedback-total-question">{ score }</p>
+          <p data-testid="feedback-total-question">{ assertions }</p>
         </div>
 
-        { score < TRES && <p data-testid="feedback-text">Could be better...</p> }
-        { score >= TRES && <p data-testid="feedback-text">Well Done!</p> }
+        { assertions < TRES && <p data-testid="feedback-text">Could be better...</p> }
+        { assertions >= TRES && <p data-testid="feedback-text">Well Done!</p> }
         <button
           type="button"
           data-testid="btn-ranking"
@@ -44,14 +44,13 @@ class Feedback extends Component {
     );
   }
 }
-
 Feedback.propTypes = {
   score: PropTypes.number.isRequired,
+  assertions: PropTypes.number.isRequired,
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
 };
-
 const mapStateToProps = (state) => ({
   score: state.player.score,
+  assertions: state.player.assertions,
 });
-
 export default connect(mapStateToProps)(Feedback);
