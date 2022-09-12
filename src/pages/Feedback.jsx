@@ -13,6 +13,8 @@ class Feedback extends Component {
   render() {
     const TRES = 3;
     const { score, assertions, history } = this.props;
+    // OBS Readme: No estado do redux as chaves score e assertions devem ser do tipo number !
+
     return (
       <div>
         <h2>Feedback</h2>
@@ -38,7 +40,6 @@ class Feedback extends Component {
 
         </button>
         <ButtonNewGame history={ history } nameButton="btn-play-again" />
-
       </div>
     );
   }
