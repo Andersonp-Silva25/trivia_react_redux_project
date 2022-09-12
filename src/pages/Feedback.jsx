@@ -11,9 +11,8 @@ class Feedback extends Component {
   };
 
   render() {
+    const { history, score, assertions } = this.props;
     const TRES = 3;
-    const { score, assertions, history } = this.props;
-    // OBS Readme: No estado do redux as chaves score e assertions devem ser do tipo number !
 
     return (
       <div>
@@ -54,3 +53,4 @@ const mapStateToProps = (state) => ({
   assertions: state.player.assertions,
 });
 export default connect(mapStateToProps)(Feedback);
+//
