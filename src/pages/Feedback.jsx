@@ -11,8 +11,8 @@ class Feedback extends Component {
   };
 
   render() {
+    const { history } = this.props;
     const TRES = 3;
-    const { score, assertions, history } = this.props;
     return (
       <div>
         <h2>Feedback</h2>
@@ -38,7 +38,6 @@ class Feedback extends Component {
 
         </button>
         <ButtonNewGame history={ history } nameButton="btn-play-again" />
-
       </div>
     );
   }
