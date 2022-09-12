@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 import Login from '../pages/Login';
@@ -16,7 +16,7 @@ describe('Verifica o componente <Login />', () => {
     expect(inputname).toBeInTheDocument();
   });
 
-  test('O botão de logar "Play" será habilitado se for digitado um nome e um email em formato valido, e ao ser clicado deve redirecionar para rota /game', () => {
+  test('O botão de logar "Play" será habilitado se for digitado um nome e um email em formato valido, e ao ser clicado deve redirecionar para rota /game', async () => {
     const { history } = renderWithRouterAndRedux(<App />);
 
     const inputname = screen.getByTestId('input-player-name');
@@ -35,7 +35,9 @@ describe('Verifica o componente <Login />', () => {
     expect(btnLogin).toBeEnabled();
 
     userEvent.click(btnLogin);
-    expect(history.location.pathname).toBe('/game');
+    await waitFor(() => {
+      expect(history.location.pathname).toBe('/game');
+    }); 
   });
 
  
