@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
-import { setScore } from '../redux/actions';
+import { setScore, setAssertions } from '../redux/actions';
 import { fetchGameApi } from '../services';
 
 class Game extends React.Component {
@@ -19,6 +19,7 @@ class Game extends React.Component {
       timer: 30,
       timeout: false,
       score: 0,
+      assertions: 0,
       displayNextButton: false,
       redirectToFeedback: false,
     };
@@ -45,12 +46,15 @@ class Game extends React.Component {
 
   handleAnswerClick(event) {
     const { dispatch } = this.props;
-    const { timer, data, currentQuestion, score } = this.state;
+    const { timer, data, currentQuestion, score, assertions } = this.state;
     const multiplier = 10;
     const hard = 3;
     console.log(data);
     if (event.target.id === 'right-answer') {
       console.log('resposta correta');
+      const newAssertions = assertions + 1;
+      dispatch(setAssertions(newAssertions));
+      this.setState({ assertions: newAssertions });
       switch (data.results[currentQuestion].difficulty) {
       case 'easy':
         this.setState({ score: score + multiplier + (timer * 1) });
