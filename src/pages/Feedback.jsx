@@ -11,7 +11,7 @@ class Feedback extends Component {
   };
 
   render() {
-    const { history } = this.props;
+    const { history, score, assertions } = this.props;
     const TRES = 3;
     return (
       <div>
