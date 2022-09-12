@@ -16,6 +16,7 @@ class FeedbackHeader extends React.Component {
         <br />
         <span data-testid="header-player-name">{name}</span>
         <br />
+        <span>Score:</span>
         <span data-testid="header-score">{score}</span>
       </div>
     );

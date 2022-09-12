@@ -16,16 +16,14 @@ class Feedback extends Component {
 
     return (
       <div>
-        <h2>Feedback</h2>
         <FeedbackHeader />
         <div>
-          <p>Placar Final:</p>
+          <span>Placar Final:</span>
           <span data-testid="feedback-total-score">{ score }</span>
-          {/* score pode ser o Nº de acertos x 10 por exemplo */}
         </div>
         <div>
-          <p>Numero de acertos:</p>
-          <p data-testid="feedback-total-question">{ assertions }</p>
+          <span>Numero de acertos:</span>
+          <span data-testid="feedback-total-question">{ assertions }</span>
         </div>
 
         { assertions < TRES && <p data-testid="feedback-text">Could be better...</p> }
