@@ -53,3 +53,4 @@ const mapStateToProps = (state) => ({
   assertions: state.player.assertions,
 });
 export default connect(mapStateToProps)(Feedback);
+//
