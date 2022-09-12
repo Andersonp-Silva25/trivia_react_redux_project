@@ -1,4 +1,4 @@
-import { SET_NAME, SET_SCORE, SET_ASSERTIONS } from '../actions';
+import { SET_NAME, SET_SCORE, SET_ASSERTIONS, SET_GAME } from '../actions';
 
 const INITIAL_STATE = {
   name: '',
@@ -24,6 +24,14 @@ function player(state = INITIAL_STATE, action) {
     return {
       ...state,
       assertions: action.payload,
+    };
+  case SET_GAME:
+    return {
+      ...state,
+      name: '',
+      assertions: 0,
+      score: 0,
+      gravatarEmail: '',
     };
   default: return state;
   }

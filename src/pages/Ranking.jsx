@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Header from '../components/Header';
+// import Header from '../components/Header';
 import ButtonNewGame from '../components/ButtonNewGame';
 
 class Ranking extends React.Component {
@@ -60,7 +60,7 @@ class Ranking extends React.Component {
 
     return (
       <div>
-        <Header />
+        {/* <Header /> */}
         <h2 data-testid="ranking-title">Ranking</h2>
         {isRanking ? ranking.map((player, index) => (
           <div key={ index }>
