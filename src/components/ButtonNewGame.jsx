@@ -1,9 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { setGame } from '../redux/actions';
 
 class ButtonNewGame extends React.Component {
   newGame = () => {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
+    dispatch(setGame());
     history.push('/');
   };
 
@@ -25,6 +28,7 @@ class ButtonNewGame extends React.Component {
 ButtonNewGame.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
   nameButton: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
-export default ButtonNewGame;
+export default connect()(ButtonNewGame);
