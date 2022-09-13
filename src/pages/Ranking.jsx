@@ -31,19 +31,14 @@ class Ranking extends React.Component {
       this.setState({ isRanking: true });
     } else {
       const convertStorage = JSON.parse(getStorage);
-
-      if (getStorage.includes(JSON.stringify(playerInfo))) {
-        console.log('Ranking está Atualizado');
-      } else {
+      if (!getStorage.includes(JSON.stringify(playerInfo))) {
         const arrayPlayer = [...convertStorage, playerInfo];
         const orderRanking = arrayPlayer.sort((a, b) => {
           if (a.score > b.score) {
             const min = -1;
             return min;
-          } if (a.score < b.score) {
-            return 1;
           }
-          return 0;
+          return 1;
         });
 
         localStorage.setItem('ranking', JSON.stringify(orderRanking));
