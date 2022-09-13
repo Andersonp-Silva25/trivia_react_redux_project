@@ -116,7 +116,7 @@ class Game extends React.Component {
             ? (<div>Loading...</div>)
             : (
               <div>
-                <p>{timer}</p>
+                <p data-testid="timer">{timer}</p>
                 <p
                   data-testid="question-category"
                 >
