@@ -7,7 +7,6 @@ import Settings from './pages/Settings';
 import Ranking from './pages/Ranking';
 import Feedback from './pages/Feedback';
 
-
 export default function App() {
   return (
     <Switch>
