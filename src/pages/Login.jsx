@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { MD5 } from 'crypto-js';
 import { fetchApi } from '../services';
 import { setName } from '../redux/actions';
+import '../styles/Login.css';
 /* import logo from '../trivia.png'; */
 
 class Login extends React.Component {
@@ -58,9 +59,6 @@ class Login extends React.Component {
             <p>SUA VEZ</p>
           </header>
         </div> */}
-        <Link to="/Settings">
-          <button type="button" data-testid="btn-settings">Settings</button>
-        </Link>
         <form
           id="form-login"
         >
@@ -71,19 +69,21 @@ class Login extends React.Component {
               name="name"
               data-testid="input-player-name"
               id="input-player-name"
+              className="input"
               onChange={ this.handleChange }
             />
           </label>
           <label htmlFor="input-gravatar-email">
-            Email
+            Emai
             <input
               type="text"
               name="email"
               data-testid="input-gravatar-email"
               id="input-gravatar-email"
+              className="input"
               onChange={ this.handleChange }
             />
-          </label>
+          </label> 
           <button
             data-testid="btn-play"
             type="button"
@@ -93,6 +93,9 @@ class Login extends React.Component {
             Play
           </button>
         </form>
+        <Link to="/Settings">
+          <button type="button" data-testid="btn-settings">Settings</button>
+        </Link>
         {!loading && <Redirect to="/game" />}
       </main>
     );

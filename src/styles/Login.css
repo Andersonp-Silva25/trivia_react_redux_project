@@ -1,0 +1,10 @@
+#form-login {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  width: 614px;
+  height: 266px;
+  left: 333px;
+  /* top: 316px; */
+  border-radius: 10px;
+}
