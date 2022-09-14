@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { MD5 } from 'crypto-js';
 import { fetchApi } from '../services';
 import { setName } from '../redux/actions';
-/* import logo from '../trivia.png'; */
+import '../styles/Login.css';
+import logo from '../imgs/logo_trivia.svg';
 
 class Login extends React.Component {
   constructor() {
@@ -52,46 +53,41 @@ class Login extends React.Component {
     const { btnDisabled, loading } = this.state;
     return (
       <main>
-        {/* <div className="App">
-          <header className="App-header">
-            <img src={ logo } className="App-logo" alt="logo" />
-            <p>SUA VEZ</p>
-          </header>
-        </div> */}
-        <Link to="/Settings">
-          <button type="button" data-testid="btn-settings">Settings</button>
-        </Link>
+        <img src={ logo } alt="logo" id='img-logo' />
         <form
           id="form-login"
         >
-          <label htmlFor="input-player-name">
-            Nome:
-            <input
-              type="name"
-              name="name"
-              data-testid="input-player-name"
-              id="input-player-name"
-              onChange={ this.handleChange }
-            />
-          </label>
-          <label htmlFor="input-gravatar-email">
-            Email
-            <input
-              type="text"
-              name="email"
-              data-testid="input-gravatar-email"
-              id="input-gravatar-email"
-              onChange={ this.handleChange }
-            />
-          </label>
+          <input
+            type="name"
+            name="name"
+            data-testid="input-player-name"
+            id="input-player-name"
+            className="input-login"
+            placeholder="Qual é o seu nome ?"
+            onChange={ this.handleChange }
+          />
+          <input
+            type="text"
+            name="email"
+            data-testid="input-gravatar-email"
+            id="input-gravatar-email"
+            className="input-login"
+            placeholder="Qual seu Email do gravatar ?"
+            onChange={ this.handleChange }
+          />
           <button
             data-testid="btn-play"
+            id="btn-play"
             type="button"
             disabled={ btnDisabled }
             onClick={ this.loginEvent }
           >
             Play
           </button>
+          <Link to="/Settings">
+          <button type="button" data-testid="btn-settings" id="settings-play">Settings</button>
+          </Link>
+         
         </form>
         {!loading && <Redirect to="/game" />}
       </main>
