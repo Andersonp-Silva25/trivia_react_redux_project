@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // import Header from '../components/Header';
 import ButtonNewGame from '../components/ButtonNewGame';
+import '../styles/Ranking.css';
+import Logo from '../imgs/logo_trivia.svg';
 
 class Ranking extends React.Component {
   constructor() {
@@ -49,30 +51,38 @@ class Ranking extends React.Component {
   }
 
   render() {
-    const { isRanking } = this.state;
+    const { isRanking, gravatarEmail } = this.state;
     const { history } = this.props;
     const ranking = JSON.parse(localStorage.getItem('ranking'));
 
     return (
-      <div>
+      <main>
         {/* <Header /> */}
-        <h2 data-testid="ranking-title">Ranking</h2>
-        {isRanking ? ranking.map((player, index) => (
-          <div key={ index }>
-            <p data-testid={ `player-name-${index}` }>{player.name}</p>
-            <p data-testid={ `player-score-${index}` }>
-              Acertos:
-              {' '}
-              {player.assertions}
-              {' '}
-              Pontuação:
-              {' '}
-              {player.score}
-            </p>
-          </div>
-        )) : <p>Ranking vazio</p>}
-        <ButtonNewGame history={ history } nameButton="btn-go-home" />
-      </div>
+        <section className="main-content">
+          <img src={ Logo } alt="Logo Trivia" />
+          <h2 data-testid="ranking-title">Ranking</h2>
+          {isRanking ? ranking.map((player, index) => (
+            <div key={ index }>
+              <div className="content-player">
+                <img src={ `https://www.gravatar.com/avatar/${gravatarEmail}` } alt="Foto Gravatar" />
+                <p data-testid={ `player-name-${index}` }>{player.name}</p>
+              </div>
+              <div className="score">
+                <p data-testid={ `player-score-${index}` }>
+                  Acertos:
+                  {' '}
+                  {player.assertions}
+                  {' '}
+                  Pontuação:
+                  {' '}
+                  {player.score}
+                </p>
+              </div>
+            </div>
+          )) : <p>Ranking vazio</p>}
+          <ButtonNewGame history={ history } nameButton="btn-go-home" />
+        </section>
+      </main>
     );
   }
 }
